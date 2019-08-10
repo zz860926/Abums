@@ -1,10 +1,19 @@
 <?php
-$id = $_GET["id"];
+$title = $_GET["title"];
 $conn=mysqli_connect("localhost","root","","abums");
-// $sql = "SELECT * FROM `pictures` WHERE `id` = '$id'";
-// $data = mysqli_query($conn,$sql);
-$delete = mysqli_query($conn,"DELETE FROM abum_content WHERE `id` = '$id'");
+mysqli_query($conn,"SET NAMES utf8");
+$sql = "SELECT * FROM pictures WHERE title = '$title'";
+$data = mysqli_query($conn,$sql);
+chdir("Pictures");    //切換到Pictures/資料夾 
 
+while($row=mysqli_fetch_array($data)){
+    print_r($row);
+    $path = $row["picture_path"];
+    $filename = substr($path,9);
+    unlink($filename);
+    $delete = mysqli_query($conn,"DELETE FROM pictures WHERE `picture_path` = '$path'"); 
+} 
+$delete = mysqli_query($conn,"DELETE FROM abum_content WHERE `title` = '$title'");
 if(!$delete){
     die('Error:'.mysqli_error());
 }

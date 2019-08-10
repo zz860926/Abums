@@ -7,7 +7,7 @@
     <body>
     <h1>相簿目錄</h1>
     <a href="signout.php">登出<a>
-    <form id="form" action="adding.php" method="post">
+    <form id="form" action="add_abum.php" method="post">
         創建相簿<br>
         主題:<input id="title" name="title" type="text"></input><br>
         <input type="submit"></input>
@@ -45,14 +45,14 @@
         $data = mysqli_query($conn,"SELECT * FROM abum_content WHERE `name` ='$user'");
         $times = mysqli_num_rows($data);
         $href = "Abum.php?title=";
-        $href_del = "delete_abum.php?id=";
+        $href_del = "delete_abum.php?title=";
         while ($row=mysqli_fetch_array($data)){
         ?>
             <tr>
                 <td><a href="<?php echo $href,$row["title"] ?>"><span><?php echo $row["title"]; ?></span></a>
                 <td><?php echo $row["name"] ?>
                 <td><?php echo $row["date"] ?>
-                <td><a href="<?php echo $href_del,$row["id"] ?>"><span>刪除相簿</span></a>
+                <td><a href="<?php echo $href_del,$row["title"] ?>"><span>刪除相簿</span></a>
             </tr>
         <?php
         }
