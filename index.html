@@ -1,0 +1,33 @@
+<html>
+    <head>
+    <meta charset='utf-8'>
+        <title>Abums</title>
+    </head>
+    <body>
+    <form id="form" action="check_acc.php" method="post">
+        帳號:<input id="acc" name="acc" type="text"></input><br>
+        密碼:<input id="pwd" name="pwd" type="password"></input>
+        <input type="submit"></input>
+    </form>
+    <script>
+    function check(){
+        var acc = document.getElementById("acc");
+        var pwd = document.getElementById("pwd");
+        var errStr =""
+        if(acc.value == "" || acc.value == null){
+            errStr += "帳號不可為空\n";
+        }
+        if(pwd.value == "" || pwd.value == null){
+            errStr += "密碼不可為空\n";
+        }
+        if (errStr == "" || errStr == null)
+		{
+			return true;
+		}
+        alert(errStr);
+        return false;
+    } 
+    document.getElementById("form").onsubmit = check;
+    </script>
+    </body>
+</html>
