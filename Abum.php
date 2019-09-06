@@ -10,19 +10,17 @@
      ?></h1>
     <h3>上傳圖片</h3>
     <form id="picture_up_form" action="picture_up.php" method="post" enctype="multipart/form-data">
-        <input type="file" id="myfile" name="myfile"></input><br>
-        圖片名稱:<input id="p_name" name="p_name" type="text"></input><br>
-        圖片描述:<input id="p_content" name="p_content" type="text"></input><br>
-        <input type="submit"></input>
+        <input type="file" id="myfile" name="file[]" multiple></input><br>
+        <!-- 圖片名稱:<input id="p_name" name="p_name" type="text"></input><br>
+        圖片描述:<input id="p_content" name="p_content" type="text"></input><br> -->
+        <input type="submit" name='submit' value='上傳'></input>
     </form>
     <script>
+    //檔案不可為空
     function check(){
         var name = document.getElementById("p_name");
         var file = document.getElementById("myfile");
         var errStr =""
-        if(name.value == "" || name.value == null){
-            errStr += "圖片名稱不可為空\n";
-        }
         if(file.value == "" || file.value == null){
             errStr += "檔案不可為空\n";
         }
@@ -36,6 +34,7 @@
     document.getElementById("picture_up_form").onsubmit = check;
     </script>
     <a href="Abums.php">查看其他相簿</a>
+    <a href="delete_all_picture.php">刪除所有照片</a>
     <table border="1">
     <tr>
         <td>名稱
@@ -58,7 +57,7 @@
         ?>
             <tr>
                 <td><a href="<?php echo $href,$row["id"] ?>"><span><?php echo $row["picture_name"]; ?></span></a>
-                <td><img src="<?php echo $row["picture_path"] ?>" height="200px">
+                <td><a href="<?php echo $href,$row["id"] ?>"><img src="<?php echo "Pictures/".$row["picture_path"] ?>" height="200px" ></a>
                 <td><?php echo $row["date"] ?>
                 <td><a href="<?php echo $href_delete,$row["id"] ?>">刪除照片</a>
             </tr>

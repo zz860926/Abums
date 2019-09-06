@@ -5,13 +5,17 @@ mysqli_query($conn,"SET NAMES utf8");
 $sql = "SELECT * FROM pictures WHERE title = '$title'";
 $data = mysqli_query($conn,$sql);
 chdir("Pictures");    //切換到Pictures/資料夾 
-
 while($row=mysqli_fetch_array($data)){
     print_r($row);
-    $path = $row["picture_path"];
-    $filename = substr($path,9);
+    $filename = $row["picture_path"];
     unlink($filename);
-    $delete = mysqli_query($conn,"DELETE FROM pictures WHERE `picture_path` = '$path'"); 
+    $delete = mysqli_query($conn,"DELETE FROM pictures WHERE `picture_path` = '$filename'"); 
+}
+chdir("Pictures/thumb");    //切換到Pictures/資料夾 
+while($row=mysqli_fetch_array($data)){
+    print_r($row);
+    $filename = $row["picture_path"];
+    unlink($filename); 
 } 
 $delete = mysqli_query($conn,"DELETE FROM abum_content WHERE `title` = '$title'");
 if(!$delete){

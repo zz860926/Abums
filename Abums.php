@@ -6,7 +6,7 @@
     </head>
     <body>
     <h1>相簿目錄</h1>
-    <a href="signout.php">登出<a>
+    <?php echo $_SESSION["user"]?>  <a href="signout.php">登出<a>
     <form id="form" action="add_abum.php" method="post">
         創建相簿<br>
         主題:<input id="title" name="title" type="text"></input><br>
@@ -32,7 +32,6 @@
     <table border="1">
     <tr>
         <td>相簿主題
-        <td>創建者
         <td>創建時間
     </tr>
     <?php
@@ -50,7 +49,6 @@
         ?>
             <tr>
                 <td><a href="<?php echo $href,$row["title"] ?>"><span><?php echo $row["title"]; ?></span></a>
-                <td><?php echo $row["name"] ?>
                 <td><?php echo $row["date"] ?>
                 <td><a href="<?php echo $href_del,$row["title"] ?>"><span>刪除相簿</span></a>
             </tr>

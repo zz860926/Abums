@@ -27,7 +27,7 @@
             <tr>
                 <td><?php echo $row["picture_name"]; ?>
                 <td><?php echo $row["picture_content"]; ?>
-                <td><img src="<?php echo $row["picture_path"] ?>" height="200px">
+                <td><img src="<?php echo "Pictures/".$row["picture_path"] ?>" height="200px">
                 <td><?php echo $row["date"] ?>
             </tr>
         <?php

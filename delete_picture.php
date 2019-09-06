@@ -7,7 +7,7 @@ $data = mysqli_query($conn,$sql);
 while ($row=mysqli_fetch_array($data)){
     $path = $row["picture_path"];
 }
-$filename = substr($path,9);
+$filename = $path;
 $delete = mysqli_query($conn,"DELETE FROM pictures WHERE `id` = '$id'");
 chdir("Pictures");
 if(file_exists($filename)){
